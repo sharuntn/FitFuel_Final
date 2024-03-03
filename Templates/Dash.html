@@ -1,0 +1,409 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>FitFuel</title>
+
+    <!-- Custom fonts for this template-->
+    <link
+      href="{% static 'vendor/fontawesome-free/css/all.min.css' %}"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+      rel="stylesheet"
+    />
+
+    <!-- Custom styles for this template-->
+    <link href="{% static 'css/sb-admin-2.min.css' %}" rel="stylesheet" />
+    <link href="{% static 'css/chatbot-style.css' %}" rel="stylesheet" />
+
+</head>
+
+<body id="page-top">
+
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+
+
+
+
+        <!-- Sidebar -->
+        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+            <!-- Sidebar - Brand -->
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/dashboard">
+                <div class="sidebar-brand-icon">
+                    <img class="" src="{% static 'FF Green Black.png' %}" alt="" style="width: 50%;">
+
+                </div>
+                <div class="sidebar-brand-text mx-3">FitFuel</div>
+            </a>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider my-0">
+
+            <!-- Nav Item - Dashboard -->
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'dashboard' %}">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Dashboard</span></a>
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+
+            
+
+            <!-- Nav Item - Pages Collapse Menu -->
+            <li class="nav-item" style="cursor: pointer;">
+                <a class="nav-link collapsed" href="{% url 'FoodLens' %}">
+                    <i class="fas fa-fw fa-cog"></i>
+                    <span>FoodLens.Ai</span>
+                </a>
+                
+            </li>
+
+            <!-- Nav Item - Utilities Collapse Menu -->
+            <li class="nav-item active" style="cursor: pointer;">
+                <a class="nav-link collapsed" href="/dietdetails">
+                    <i class="fas fa-fw fa-wrench"></i>
+                    <span>IntelliRec</span>
+                </a>
+                
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+
+            
+
+            <!-- Nav Item - Pages Collapse Menu -->
+            <li class="nav-item" style="cursor: pointer;">
+                <a class="nav-link" href="/health">
+                    <i class="fas fa-fw fa-folder"></i>
+                    <span>Health Analysis</span>
+                </a>
+                
+            </li>
+
+            <!-- Nav Item - Charts -->
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'chart_home' %}">
+                    <i class="fas fa-fw fa-chart-area"></i>
+                    <span>Charts</span></a>
+            </li>
+
+            <!-- Nav Item - Tables -->
+            <li class="nav-item">
+                <a class="nav-link" href="/intake">
+                    <i class="fas fa-fw fa-table"></i>
+                    <span>Intake</span></a>
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider d-none d-md-block">
+
+            <!-- Sidebar Toggler (Sidebar) -->
+            <div class="text-center d-none d-md-inline">
+                <button class="rounded-circle border-0" id="sidebarToggle"></button>
+            </div>
+
+        </ul>
+        <!-- End of Sidebar -->
+
+
+
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+
+            <!-- Main Content -->
+            <div id="content">
+
+                <!-- Topbar -->
+                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+
+                    <!-- Sidebar Toggle (Topbar) -->
+                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                        <i class="fa fa-bars"></i>
+                    </button>
+
+                    
+
+                    <!-- Topbar Navbar -->
+                    <ul class="navbar-nav ml-auto">                       
+
+                       
+
+                        <div class="topbar-divider d-none d-sm-block"></div>
+
+                        <!-- Nav Item - User Information -->
+                        <li class="nav-item dropdown no-arrow">
+                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{user.username}}</span>
+                                <img class="img-profile rounded-circle"
+                                    src="img/undraw_profile.svg">
+                            </a>
+                            <!-- Dropdown - User Information -->
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                aria-labelledby="userDropdown">
+                                <a class="dropdown-item" href="{{user.userprofile.profile_picture.url}}">
+                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Profile
+                                </a>
+                                
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="login/" data-toggle="modal" data-target="#logoutModal">
+                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Logout
+                                </a>
+                            </div>
+                        </li>
+
+                    </ul>
+
+                </nav>
+                <!-- End of Topbar -->
+
+                <!-- Begin Page Content -->
+                <div class="container mt-5">
+
+                    <h1 class="text-center">DASH Diet</h1>
+
+  <p>The Dietary Approaches to Stop Hypertension (DASH) diet represents a comprehensive and science-based approach to dietary management, specifically crafted to prevent and mitigate hypertension while promoting overall cardiovascular health. Developed by the National Heart, Lung, and Blood Institute (NHLBI), the DASH diet transcends mere sodium restriction, encompassing a holistic dietary pattern that emphasizes nutrient-rich foods and lifestyle modifications.</p>
+
+  <h2>Key Principles of the DASH Diet:</h2>
+  <ol>
+    <li><strong>Abundance of Fruits and Vegetables:</strong>
+      <p>The cornerstone of the DASH diet lies in the abundant consumption of fruits and vegetables, rich in potassium, magnesium, and antioxidants. These components contribute to blood pressure regulation and overall cardiovascular health.</p>
+    </li>
+    <li><strong>Whole Grains for Dietary Fiber:</strong>
+      <p>The inclusion of whole grains, such as brown rice, oats, and whole wheat, ensures an adequate intake of dietary fiber. Fiber aids in satiety, promotes digestive health, and contributes to stable blood sugar levels.</p>
+    </li>
+    <li><strong>Moderate Lean Proteins:</strong>
+      <p>Lean protein sources, including poultry, fish, legumes, and nuts, feature prominently in the DASH diet. These proteins offer essential amino acids without the saturated fat content found in some other protein sources.</p>
+    </li>
+    <li><strong>Dairy or Dairy Alternatives:</strong>
+      <p>Low-fat or fat-free dairy products are encouraged, providing calcium, potassium, and vitamin D. These nutrients play pivotal roles in bone health and blood pressure regulation.</p>
+    </li>
+    <li><strong>Healthy Fats from Nuts and Seeds:</strong>
+      <p>Nuts, seeds, and legumes contribute healthy fats, including omega-3 fatty acids. These fats support cardiovascular health and provide a source of sustainable energy.</p>
+    </li>
+    <li><strong>Limiting Saturated Fats and Red Meat:</strong>
+      <p>The DASH diet advises on the moderation of saturated fats, found in sources like red meat and full-fat dairy. Limiting these fats helps manage cholesterol levels and reduces the risk of heart disease.</p>
+    </li>
+    <li><strong>Sodium Moderation:</strong>
+      <p>While not strictly sodium-free, the DASH diet recommends moderate sodium intake by reducing processed foods and using herbs and spices for flavoring. This helps control blood pressure.</p>
+    </li>
+    <li><strong>Moderation in Added Sugars:</strong>
+      <p>Added sugars and sweets are to be consumed in moderation, supporting not only cardiovascular health but also overall metabolic well-being.</p>
+  </ol>
+
+  <h2>DASH Diet Plans:</h2>
+  <ol>
+    <li><strong>Standard DASH Diet (2,000 Calories):</strong>
+      <p>Tailored for individuals with a standard calorie intake, this plan forms the basis of the DASH diet guidelines.</p>
+    </li>
+    <li><strong>Lower Calorie DASH Diet:</strong>
+      <p>With a focus on weight management, this plan reduces calorie intake while adhering to the principles of the DASH diet.</p>
+    </li>
+    <li><strong>Higher Calorie DASH Diet (3,000 Calories):</strong>
+      <p>Designed for those with higher energy requirements, this plan maintains the DASH diet's core principles while providing additional calories.</p>
+  </ol>
+
+  <h2>Health Benefits of the DASH Diet:</h2>
+  <ol>
+    <li><strong>Blood Pressure Management:</strong>
+      <p>The DASH diet has demonstrated efficacy in lowering and managing blood pressure, making it a valuable dietary tool for individuals with hypertension.</p>
+    </li>
+    <li><strong>Cardiovascular Health:</strong>
+      <p>Beyond blood pressure control, the DASH diet supports overall cardiovascular health by optimizing cholesterol levels and reducing the risk of heart disease.</p>
+    </li>
+    <li><strong>Weight Management:</strong>
+      <p>The nutrient-dense and balanced nature of the DASH diet can contribute to weight management, making it beneficial for those aiming to achieve or maintain a healthy weight.</p>
+    </li>
+    <li><strong>Improved Insulin Sensitivity:</strong>
+      <p>The composition of the DASH diet, with its emphasis on whole foods, may improve insulin sensitivity, a factor in managing and preventing type 2 diabetes.</p>
+    </li>
+    <li><strong>Nutrient Density:</strong>
+      <p>The DASH diet provides a wealth of essential vitamins, minerals, and antioxidants through its emphasis on whole, minimally processed foods, promoting overall well-being.</p>
+  </ol>
+
+  <h2>Implementation and Considerations:</h2>
+  <ol>
+    <li><strong>Gradual Transition:</strong>
+      <p>Implementation of the DASH diet is often more successful when undertaken gradually, allowing individuals to adapt to the dietary changes over time.</p>
+    </li>
+    <li><strong>Consultation with Healthcare Professionals:</strong>
+      <p>Individuals with specific health conditions, such as diabetes or kidney disease, should seek guidance from healthcare professionals or registered dietitians for personalized advice.</p>
+    </li>
+    <li><strong>Physical Activity:</strong>
+      <p>Combining the DASH diet with regular physical activity enhances its effectiveness in promoting overall cardiovascular health.</p>
+    </li>
+    <li><strong>Individualization:</strong>
+      <p>The flexibility of the DASH diet allows for adaptation to individual preferences, cultural considerations, and specific health needs.</p>
+  </ol>
+
+  <h2>Conclusion:</h2>
+  <p>In summary, the DASH diet stands as a comprehensive and evidence-based dietary approach with a primary focus on mitigating hypertension and enhancing cardiovascular health. Its emphasis on whole, nutrient-dense foods, coupled with moderate sodium intake, makes it a practical and sustainable choice for individuals seeking to make positive dietary changes. With its flexibility and proven health benefits, the DASH diet continues to be a valuable tool in the realm of nutrition for the prevention and management of chronic diseases.</p>
+
+
+                    
+
+                </div>
+            
+
+            </div>
+            <!-- End of Main Content -->
+
+            <!-- Chatbot layout -->
+            <div class="chat-box">
+                <div class="chat-box-header">
+                    <span class="retep">Retep</span>
+                    <p><i class="fa fa-times"></i></p>
+                </div>
+                <div class="chat-box-body">
+                    <div class="chat-box-body-send">
+                        <p>This is my message.</p>
+                        <span>12:00</span>
+                    </div>
+                    <div class="chat-box-body-receive">
+                        <p>This is my message.</p>
+                        <span>12:00</span>
+                    </div>
+                    
+                    <div class="chat-box-body-send">
+                        <p>This is my message.</p>
+                        <span>12:00</span>
+                    </div>
+                    
+                    <div class="chat-box-body-receive">
+                        <p>This is my message.</p>
+                        <span>12:00</span>
+                    </div>
+                    
+                    <div class="chat-box-body-send">
+                        <p>This is my message.</p>
+                        <span>12:00</span>
+                    </div>
+        
+                    <div class="chat-box-body-receive">
+                        <p>This is my message.</p>
+                        <span>12:00</span>
+                    </div>
+                    <div class="chat-box-body-send">
+                        <p>This is my message.</p>
+                        <span>12:00</span>
+                    </div>
+        
+                    <div class="chat-box-body-receive">
+                        <p>This is my message.</p>
+                        <span>12:00</span>
+                    </div>
+                    <div class="chat-box-body-send">
+                        <p>This is my message.</p>
+                        <span>12:00</span>
+                    </div>
+        
+                    <div class="chat-box-body-receive">
+                        <p>This is my message.</p>
+                        <span>12:00</span>
+                    </div>
+                    <div class="chat-box-body-send">
+                        <p>This is my message.</p>
+                        <span>12:00</span>
+                    </div>
+        
+                    <div class="chat-box-body-receive">
+                        <p>This is my message. This is my another message and this is my third message.</p>
+                        <span>12:00</span>
+                    </div>
+                </div>
+                <div class="chat-box-footer">
+                    
+                    <input placeholder="Ask" type="text" />
+                    <i class="send far fa-paper-plane"></i>
+        
+                </div>
+            </div>
+            <div class="chat-button"><span></span></div>
+            <!-- End of Chatbot layout -->
+
+
+
+
+
+            <!-- Footer -->
+            <footer class="sticky-footer bg-white">
+                <div class="container my-auto">
+                    <div class="copyright text-center my-auto">
+                        <span>Copyright &copy; FitFuel 2024</span>
+                    </div>
+                </div>
+            </footer>
+            <!-- End of Footer -->
+
+        </div>
+        <!-- End of Content Wrapper -->
+
+    </div>
+    <!-- End of Page Wrapper -->
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <a class="btn btn-primary" href="{% url 'logout' %}">Logout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<!-- Bootstrap core JavaScript -->
+<script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+<script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+
+<!-- Core plugin JavaScript -->
+<script src="{% static 'vendor/jquery-easing/jquery.easing.min.js' %}"></script>
+
+<!-- Custom scripts for all pages -->
+<script src="{% static 'js/sb-admin-2.min.js' %}"></script>
+
+<!-- Page level plugins -->
+<script src="{% static 'vendor/chart.js/Chart.min.js' %}"></script>
+
+<!-- Page level custom scripts -->
+<script src="{% static 'js/demo/chart-area-demo.js' %}"></script>
+<script src="{% static 'js/demo/chart-pie-demo.js' %}"></script>
+<script src="{% static 'js/chatbot-script.js' %}"></script>
+
+
+</body>
+
+</html>

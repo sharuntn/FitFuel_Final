@@ -1,0 +1,59 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-body">
+                    <div class="chat-container">
+                        <div class="chat-box-header">
+                        {% for item in data %}
+                            <!-- <div class="message">
+                                <div class="prompt">{{ item.prompt }}</div>
+                                <div class="translation" style='font-weight:bold;'>{{ item.translation }}</div>
+                            </div>
+                            <hr class="my-4"> Divider -->
+                            
+                                <span class="retep">Retep</span>
+                                <p><i class="fa fa-times"></i></p>
+                            </div>
+                            <div class="chat-box-body">
+                                <div class="chat-box-body-send">
+                                    <p>{{ item.prompt }}</p>
+                                </div>
+                                <div class="chat-box-body-receive">
+                                    <p>{{ item.translation }}</p>
+                                </div>
+                           
+                        {% endfor %}
+                    </div>
+                    </div>
+                    <form action="" method="post">
+                        {% csrf_token %}
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Ask your question" aria-label="enter the prompt"
+                                aria-describedby="button-addon2" style="border: 4px;" name="prompt">
+                            <div class="input-group-append">
+                                <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Send</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap JS (Optional) -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

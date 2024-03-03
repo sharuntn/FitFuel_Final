@@ -1,0 +1,408 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>FitFuel</title>
+
+    <!-- Custom fonts for this template-->
+    <link
+      href="{% static 'vendor/fontawesome-free/css/all.min.css' %}"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+      rel="stylesheet"
+    />
+
+    <!-- Custom styles for this template-->
+    <link href="{% static 'css/sb-admin-2.min.css' %}" rel="stylesheet" />
+    <link href="{% static 'css/chatbot-style.css' %}" rel="stylesheet" />
+
+</head>
+
+<body id="page-top">
+
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+
+
+
+
+        <!-- Sidebar -->
+        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+            <!-- Sidebar - Brand -->
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/dashboard">
+                <div class="sidebar-brand-icon">
+                    <img class="" src="{% static 'FF Green Black.png' %}" alt="" style="width: 50%;">
+
+                </div>
+                <div class="sidebar-brand-text mx-3">FitFuel</div>
+            </a>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider my-0">
+
+            <!-- Nav Item - Dashboard -->
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'dashboard' %}">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Dashboard</span></a>
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+
+            
+
+            <!-- Nav Item - Pages Collapse Menu -->
+            <li class="nav-item" style="cursor: pointer;">
+                <a class="nav-link collapsed" href="{% url 'FoodLens' %}">
+                    <i class="fas fa-fw fa-cog"></i>
+                    <span>FoodLens.Ai</span>
+                </a>
+                
+            </li>
+
+            <!-- Nav Item - Utilities Collapse Menu -->
+            <li class="nav-item active" style="cursor: pointer;">
+                <a class="nav-link collapsed" href="/dietdetails">
+                    <i class="fas fa-fw fa-wrench"></i>
+                    <span>IntelliRec</span>
+                </a>
+                
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+
+            
+
+            <!-- Nav Item - Pages Collapse Menu -->
+            <li class="nav-item" style="cursor: pointer;">
+                <a class="nav-link" href="/health">
+                    <i class="fas fa-fw fa-folder"></i>
+                    <span>Health Analysis</span>
+                </a>
+                
+            </li>
+
+            <!-- Nav Item - Charts -->
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'chart_home' %}">
+                    <i class="fas fa-fw fa-chart-area"></i>
+                    <span>Charts</span></a>
+            </li>
+
+            <!-- Nav Item - Tables -->
+            <li class="nav-item">
+                <a class="nav-link" href="/intake">
+                    <i class="fas fa-fw fa-table"></i>
+                    <span>Intake</span></a>
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider d-none d-md-block">
+
+            <!-- Sidebar Toggler (Sidebar) -->
+            <div class="text-center d-none d-md-inline">
+                <button class="rounded-circle border-0" id="sidebarToggle"></button>
+            </div>
+
+        </ul>
+        <!-- End of Sidebar -->
+
+
+
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+
+            <!-- Main Content -->
+            <div id="content">
+
+                <!-- Topbar -->
+                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+
+                    <!-- Sidebar Toggle (Topbar) -->
+                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                        <i class="fa fa-bars"></i>
+                    </button>
+
+                    
+
+                    <!-- Topbar Navbar -->
+                    <ul class="navbar-nav ml-auto">                       
+
+                       
+
+                        <div class="topbar-divider d-none d-sm-block"></div>
+
+                        <!-- Nav Item - User Information -->
+                        <li class="nav-item dropdown no-arrow">
+                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{user.username}}</span>
+                                <img class="img-profile rounded-circle"
+                                    src="img/undraw_profile.svg">
+                            </a>
+                            <!-- Dropdown - User Information -->
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                aria-labelledby="userDropdown">
+                                <a class="dropdown-item" href="{{user.userprofile.profile_picture.url}}">
+                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Profile
+                                </a>
+                                
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="{% url 'logout' %}" data-toggle="modal" data-target="#logoutModal">
+                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Logout
+                                </a>
+                            </div>
+                        </li>
+
+                    </ul>
+
+                </nav>
+                <!-- End of Topbar -->
+
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+
+                    <!-- Page Heading -->
+                    <div class="container mt-5">
+
+                        <h1 class="text-center">Keto Diet</h1>
+                      
+                        <p>The ketogenic diet, often colloquially known as the keto diet, represents a nutritional strategy characterized by a fundamental shift in the body's energy metabolism. This dietary approach has garnered significant attention for its potential benefits, spanning from weight loss to improved cognitive function. Delving deeper into the intricacies of the keto diet reveals a multifaceted landscape encompassing macronutrient composition, physiological adaptations, diverse food choices, health outcomes, potential challenges, and considerations for long-term adherence.</p>
+                      
+                        <h2>1. Macronutrient Composition:</h2>
+                        <p>The keto diet is meticulously structured in its macronutrient distribution, steering individuals towards:</p>
+                        <ul>
+                          <li><strong>Low Carbohydrates:</strong> Restricting daily carbohydrate intake to approximately 20-50 grams prompts the body to enter ketosis, a metabolic state where fats become the primary source of energy.</li>
+                          <li><strong>Moderate Protein:</strong> To prevent excess gluconeogenesis, where the body converts protein into glucose, protein intake is kept moderate.</li>
+                          <li><strong>High Fat:</strong> The majority of daily calories are derived from healthy fats, such as avocados, nuts, seeds, oils, and fatty cuts of meat.</li>
+                        </ul>
+                      
+                        <h2>2. Ketosis and Fat Adaptation:</h2>
+                        <ul>
+                          <li><strong>Ketosis:</strong> The process of ketosis involves the liver breaking down fat into ketones, which serve as an alternative fuel source when glucose availability is limited.</li>
+                          <li><strong>Fat Adaptation:</strong> With sustained adherence to the keto diet, the body becomes increasingly proficient at utilizing fats for energy, a state known as fat adaptation.</li>
+                        </ul>
+                      
+                        <h2>3. Foods Allowed on Keto:</h2>
+                        <ul>
+                          <li><strong>Healthy Fats:</strong> Avocados, olive oil, coconut oil, nuts, seeds, and fatty fish provide essential fatty acids and support ketone production.</li>
+                          <li><strong>Proteins:</strong> Meat, poultry, fish, eggs, and dairy supply adequate protein without surpassing limits that might compromise ketosis.</li>
+                          <li><strong>Low-Carb Vegetables:</strong> Leafy greens, broccoli, cauliflower, zucchini, and peppers are rich in fiber and micronutrients with minimal impact on blood sugar.</li>
+                        </ul>
+                      
+                        <h2>4. Foods to Avoid:</h2>
+                        <ul>
+                          <li><strong>High-Carb Foods:</strong> Grains, bread, pasta, rice, and starchy vegetables are restricted to maintain low carbohydrate intake.</li>
+                          <li><strong>Sugary Foods:</strong> Candy, cakes, cookies, and sweetened beverages are excluded to minimize insulin response.</li>
+                          <li><strong>Processed Foods:</strong> Many processed foods, often containing hidden sugars and high carb content, are eliminated.</li>
+                          <li><strong>Fruits (in moderation):</strong> While nutrient-dense, fruits are limited due to their natural sugar content.</li>
+                        </ul>
+                      
+                        <h2>5. Health Benefits:</h2>
+                        <ul>
+                          <li><strong>Weight Loss:</strong> The keto diet's ability to induce ketosis often leads to rapid weight loss, attributed to reduced appetite and increased fat burning.</li>
+                          <li><strong>Blood Sugar Control:</strong> Improved insulin sensitivity makes the keto diet beneficial for managing blood sugar levels, particularly in individuals with type 2 diabetes.</li>
+                          <li><strong>Mental Clarity:</strong> Some adherents report enhanced mental focus and clarity, often associated with the consistent energy provided by ketones.</li>
+                          <li><strong>Epilepsy Treatment:</strong> Historically, the keto diet has been employed as a therapeutic intervention for epilepsy, especially in pediatric cases.</li>
+                        </ul>
+                      
+                        <h2>6. Potential Challenges and Side Effects:</h2>
+                        <ul>
+                          <li><strong>Keto Flu:</strong> In the initial stages, individuals may experience symptoms like fatigue, headaches, and irritability as the body adapts to using ketones.</li>
+                          <li><strong>Electrolyte Imbalance:</strong> A reduction in carbohydrate intake may lead to a loss of electrolytes, necessitating careful management of sodium, potassium, and magnesium levels.</li>
+                          <li><strong>Digestive Issues:</strong> Constipation might occur due to the reduced fiber intake from carbohydrate-rich foods.</li>
+                        </ul>
+                      
+                        <h2>7. Cyclical and Targeted Approaches:</h2>
+                        <ul>
+                          <li><strong>Cyclical Keto:</strong> Some individuals adopt a cyclical approach, alternating between periods of strict keto and higher-carb intake, which may be beneficial for athletes or those seeking greater dietary flexibility.</li>
+                          <li><strong>Targeted Keto:</strong> This approach involves consuming additional carbohydrates around workouts to support exercise performance without compromising ketosis during the rest of the day.</li>
+                        </ul>
+                      
+                        <h2>8. Monitoring Ketosis:</h2>
+                        <ul>
+                          <li><strong>Ketone Testing:</strong> Various methods, including urine, blood, or breath tests, can measure ketone levels.</li>
+                          <li><strong>Individual Variation:</strong> The level of carbohydrate restriction required to maintain ketosis can vary among individuals, and optimal ketone levels may differ based on personal goals.</li>
+                        </ul>
+                      
+                        <h2>9. Long-Term Considerations:</h2>
+                        <ul>
+                          <li><strong>Sustainability:</strong> While some individuals thrive on the keto diet, others find it challenging to sustain over the long term. Consideration of individual preferences and lifestyle is crucial.</li>
+                          <li><strong>Nutrient Adequacy:</strong> Ensuring a variety of nutrient-dense foods is essential to prevent potential nutrient deficiencies that may arise from restricted food choices.</li>
+                        </ul>
+                      
+                        <h2>10. Consultation and Individualization:</h2>
+                        <ul>
+                          <li><strong>Health Professional Guidance:</strong> Before embarking on the keto diet, consulting with a healthcare professional or registered dietitian is advisable, especially for those with underlying health conditions.</li>
+                          <li><strong>Individualization:</strong> The keto diet may not be universally suitable, and individual responses can vary. Modifications may be necessary based on personal health goals and needs.</li>
+                        </ul>
+                      
+                      </div>
+
+
+
+                    
+
+                </div>
+            
+
+            </div>
+            <!-- End of Main Content -->
+
+            {% comment %} <!-- Chatbot layout -->
+            <div class="chat-box">
+                <div class="chat-box-header">
+                    <span class="retep">Retep</span>
+                    <p><i class="fa fa-times"></i></p>
+                </div>
+                <div class="chat-box-body">
+                    <div class="chat-box-body-send">
+                        <p>This is my message.</p>
+                        <span>12:00</span>
+                    </div>
+                    <div class="chat-box-body-receive">
+                        <p>This is my message.</p>
+                        <span>12:00</span>
+                    </div>
+                    
+                    <div class="chat-box-body-send">
+                        <p>This is my message.</p>
+                        <span>12:00</span>
+                    </div>
+                    
+                    <div class="chat-box-body-receive">
+                        <p>This is my message.</p>
+                        <span>12:00</span>
+                    </div>
+                    
+                    <div class="chat-box-body-send">
+                        <p>This is my message.</p>
+                        <span>12:00</span>
+                    </div>
+        
+                    <div class="chat-box-body-receive">
+                        <p>This is my message.</p>
+                        <span>12:00</span>
+                    </div>
+                    <div class="chat-box-body-send">
+                        <p>This is my message.</p>
+                        <span>12:00</span>
+                    </div>
+        
+                    <div class="chat-box-body-receive">
+                        <p>This is my message.</p>
+                        <span>12:00</span>
+                    </div>
+                    <div class="chat-box-body-send">
+                        <p>This is my message.</p>
+                        <span>12:00</span>
+                    </div>
+        
+                    <div class="chat-box-body-receive">
+                        <p>This is my message.</p>
+                        <span>12:00</span>
+                    </div>
+                    <div class="chat-box-body-send">
+                        <p>This is my message.</p>
+                        <span>12:00</span>
+                    </div>
+        
+                    <div class="chat-box-body-receive">
+                        <p>This is my message. This is my another message and this is my third message.</p>
+                        <span>12:00</span>
+                    </div>
+                </div>
+                <div class="chat-box-footer">
+                    
+                    <input placeholder="Ask" type="text" />
+                    <i class="send far fa-paper-plane"></i>
+        
+                </div>
+            </div>
+            <div class="chat-button"><span></span></div> {% endcomment %}
+            <!-- End of Chatbot layout -->
+
+
+
+
+
+            <!-- Footer -->
+            <footer class="sticky-footer bg-white">
+                <div class="container my-auto">
+                    <div class="copyright text-center my-auto">
+                        <span>Copyright &copy; FitFuel 2024</span>
+                    </div>
+                </div>
+            </footer>
+            <!-- End of Footer -->
+
+        </div>
+        <!-- End of Content Wrapper -->
+
+    </div>
+    <!-- End of Page Wrapper -->
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <a class="btn btn-primary" href="{% url 'logout' %}">Logout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<!-- Bootstrap core JavaScript -->
+<script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+<script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+
+<!-- Core plugin JavaScript -->
+<script src="{% static 'vendor/jquery-easing/jquery.easing.min.js' %}"></script>
+
+<!-- Custom scripts for all pages -->
+<script src="{% static 'js/sb-admin-2.min.js' %}"></script>
+
+<!-- Page level plugins -->
+<script src="{% static 'vendor/chart.js/Chart.min.js' %}"></script>
+
+<!-- Page level custom scripts -->
+<script src="{% static 'js/demo/chart-area-demo.js' %}"></script>
+<script src="{% static 'js/demo/chart-pie-demo.js' %}"></script>
+<script src="{% static 'js/chatbot-script.js' %}"></script>
+
+
+</body>
+
+</html>

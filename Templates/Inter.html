@@ -1,0 +1,373 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>FitFuel</title>
+
+    <!-- Custom fonts for this template-->
+    <link
+      href="{% static 'vendor/fontawesome-free/css/all.min.css' %}"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+      rel="stylesheet"
+    />
+
+    <!-- Custom styles for this template-->
+    <link href="{% static 'css/sb-admin-2.min.css' %}" rel="stylesheet" />
+    <link href="{% static 'css/chatbot-style.css' %}" rel="stylesheet" />
+
+</head>
+
+<body id="page-top">
+
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+
+
+
+
+        <!-- Sidebar -->
+        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+            <!-- Sidebar - Brand -->
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/dashboard">
+                <div class="sidebar-brand-icon">
+                    <img class="" src="{% static 'FF Green Black.png' %}" alt="" style="width: 50%;">
+
+                </div>
+                <div class="sidebar-brand-text mx-3">FitFuel</div>
+            </a>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider my-0">
+
+            <!-- Nav Item - Dashboard -->
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'dashboard' %}">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Dashboard</span></a>
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+
+            
+
+            <!-- Nav Item - Pages Collapse Menu -->
+            <li class="nav-item" style="cursor: pointer;">
+                <a class="nav-link collapsed" href="{% url 'FoodLens' %}">
+                    <i class="fas fa-fw fa-cog"></i>
+                    <span>FoodLens.Ai</span>
+                </a>
+                
+            </li>
+
+            <!-- Nav Item - Utilities Collapse Menu -->
+            <li class="nav-item active" style="cursor: pointer;">
+                <a class="nav-link collapsed" href="/dietdetails">
+                    <i class="fas fa-fw fa-wrench"></i>
+                    <span>IntelliRec</span>
+                </a>
+                
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+
+            
+
+            <!-- Nav Item - Pages Collapse Menu -->
+            <li class="nav-item" style="cursor: pointer;">
+                <a class="nav-link" href="/health">
+                    <i class="fas fa-fw fa-folder"></i>
+                    <span>Health Analysis</span>
+                </a>
+                
+            </li>
+
+            <!-- Nav Item - Charts -->
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'chart_home' %}">
+                    <i class="fas fa-fw fa-chart-area"></i>
+                    <span>Charts</span></a>
+            </li>
+
+            <!-- Nav Item - Tables -->
+            <li class="nav-item">
+                <a class="nav-link" href="/intake">
+                    <i class="fas fa-fw fa-table"></i>
+                    <span>Intake</span></a>
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider d-none d-md-block">
+
+            <!-- Sidebar Toggler (Sidebar) -->
+            <div class="text-center d-none d-md-inline">
+                <button class="rounded-circle border-0" id="sidebarToggle"></button>
+            </div>
+
+        </ul>
+        <!-- End of Sidebar -->
+
+
+
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+
+            <!-- Main Content -->
+            <div id="content">
+
+                <!-- Topbar -->
+                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+
+                    <!-- Sidebar Toggle (Topbar) -->
+                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                        <i class="fa fa-bars"></i>
+                    </button>
+
+                    
+
+                    <!-- Topbar Navbar -->
+                    <ul class="navbar-nav ml-auto">                       
+
+                       
+
+                        <div class="topbar-divider d-none d-sm-block"></div>
+
+                        <!-- Nav Item - User Information -->
+                        <li class="nav-item dropdown no-arrow">
+                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{user.username}}</span>
+                                <img class="img-profile rounded-circle"
+                                    src="img/undraw_profile.svg">
+                            </a>
+                            <!-- Dropdown - User Information -->
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                aria-labelledby="userDropdown">
+                                <a class="dropdown-item" href="{{user.userprofile.profile_picture.url}}">
+                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Profile
+                                </a>
+                                
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="login/" data-toggle="modal" data-target="#logoutModal">
+                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Logout
+                                </a>
+                            </div>
+                        </li>
+
+                    </ul>
+
+                </nav>
+                <!-- End of Topbar -->
+
+                <!-- Begin Page Content -->
+                <div class="container mt-5">
+
+                    <h1 class="text-center">Intermittent Fasting</h1>
+                  
+                    <p>Intermittent fasting is a dietary approach gaining recognition for its potential health benefits and simplicity. Rooted in the concept of cycling between eating and fasting windows within a single day, Intermittent fasting offers a flexible and accessible strategy for those seeking to enhance metabolic health, manage weight, and potentially support cellular repair.</p>
+                  
+                    <h2>Core Principles:</h2>
+                    <p>At its core, Intermittent fasting centers on the timing of meals, emphasizing the duration of the eating and fasting windows. The eating window, ranging typically from 12 to 16 hours, constitutes the period during which individuals consume all their daily caloric intake, while the fasting window involves abstaining from calorie consumption. This approach stands in contrast to traditional meal patterns and focuses on the temporal aspect of eating.</p>
+                  
+                    <h2>Popular Approaches:</h2>
+                    <p>Several popular methods exist within the realm of Intermittent fasting, providing flexibility to suit individual preferences and lifestyles:</p>
+                    <ul>
+                      <li><strong>12/12 Method:</strong> This beginner-friendly approach involves a 12-hour fasting window and a corresponding 12-hour eating window.</li>
+                      <li><strong>16/8 Method:</strong> A more advanced approach, with a 16-hour fasting window and an 8-hour eating window, aligns well with daily routines.</li>
+                      <li><strong>14/10 Method:</strong> Falling between the 12/12 and 16/8 methods, this moderate approach offers a balanced fasting and eating period.</li>
+                    </ul>
+                  
+                    <h2>Metabolic Changes during Fasting:</h2>
+                    <p>Intermittent fasting induces various metabolic changes during the fasting phase:</p>
+                    <ul>
+                      <li><strong>Insulin Sensitivity:</strong> Fasting periods may enhance insulin sensitivity, promoting efficient blood sugar regulation and potentially reducing the risk of type 2 diabetes.</li>
+                      <li><strong>Autophagy:</strong> A cellular recycling process, autophagy, is activated during fasting, contributing to the removal of damaged cellular components and cellular repair.</li>
+                      <li><strong>Fat Utilization:</strong> With the absence of immediate dietary glucose, the body shifts to utilizing stored fat for energy, aiding in fat metabolism.</li>
+                    </ul>
+                  
+                    <h2>Benefits of Intermittent Fasting:</h2>
+                    <p>The potential health benefits associated with Intermittent fasting are diverse and encompass both physiological and practical aspects:</p>
+                    <ul>
+                      <li><strong>Weight Management:</strong> The time-restricted eating window often results in a natural reduction in caloric intake, facilitating weight loss or weight maintenance.</li>
+                      <li><strong>Metabolic Health:</strong> Improved insulin sensitivity and better blood sugar control contribute to enhanced metabolic health.</li>
+                      <li><strong>Cellular Repair:</strong> Activation of autophagy supports cellular repair, potentially influencing longevity and overall cellular health.</li>
+                      <li><strong>Simplicity and Sustainability:</strong> The straightforward nature of Intermittent fasting makes it an accessible and sustainable dietary strategy for many individuals, requiring minimal dietary changes.</li>
+                    </ul>
+                  
+                    <h2>Considerations and Potential Challenges:</h2>
+                    <p>While Intermittent fasting offers a range of benefits, individuals should consider potential challenges and address them proactively:</p>
+                    <ul>
+                      <li><strong>Nutrient Intake:</strong> Careful planning is necessary within the eating window to ensure sufficient nutrient intake and prevent nutrient deficiencies.</li>
+                      <li><strong>Individual Variability:</strong> Responses to fasting can vary widely among individuals, with some adapting more easily than others.</li>
+                      <li><strong>Social and Lifestyle Considerations:</strong> Adjustments may be needed to accommodate social and lifestyle commitments, emphasizing the need for flexibility within the fasting and eating windows.</li>
+                    </ul>
+                  
+                    <h2>Personalization and Professional Guidance:</h2>
+                    <p>Given the individualized nature of dietary approaches, Intermittent fasting is not universally suitable for everyone. Professional guidance from healthcare professionals or registered dietitians is advisable, especially for individuals with pre-existing health conditions or specific nutritional needs. Personalization ensures that the approach aligns with individual goals and lifestyle factors.</p>
+                  
+                    <h2>Conclusion:</h2>
+                    <p>Intermittent fasting emerges as a versatile and accessible dietary strategy, offering individuals the flexibility to integrate periods of fasting into their daily routine. By emphasizing the temporal aspect of eating, it provides a straightforward approach to potential benefits such as weight management, improved metabolic health, and cellular repair. As with any dietary strategy, personalization and informed decision-making, guided by professional advice, are crucial for optimizing individual outcomes. In the ever-evolving landscape of nutrition, Intermittent fasting stands as a promising approach, inviting exploration and adaptation based on individual needs and goals.</p>
+                  
+                  </div>
+            
+
+            </div>
+            <!-- End of Main Content -->
+
+            <!-- Chatbot layout -->
+            <div class="chat-box">
+                <div class="chat-box-header">
+                    <span class="retep">Retep</span>
+                    <p><i class="fa fa-times"></i></p>
+                </div>
+                <div class="chat-box-body">
+                    <div class="chat-box-body-send">
+                        <p>This is my message.</p>
+                        <span>12:00</span>
+                    </div>
+                    <div class="chat-box-body-receive">
+                        <p>This is my message.</p>
+                        <span>12:00</span>
+                    </div>
+                    
+                    <div class="chat-box-body-send">
+                        <p>This is my message.</p>
+                        <span>12:00</span>
+                    </div>
+                    
+                    <div class="chat-box-body-receive">
+                        <p>This is my message.</p>
+                        <span>12:00</span>
+                    </div>
+                    
+                    <div class="chat-box-body-send">
+                        <p>This is my message.</p>
+                        <span>12:00</span>
+                    </div>
+        
+                    <div class="chat-box-body-receive">
+                        <p>This is my message.</p>
+                        <span>12:00</span>
+                    </div>
+                    <div class="chat-box-body-send">
+                        <p>This is my message.</p>
+                        <span>12:00</span>
+                    </div>
+        
+                    <div class="chat-box-body-receive">
+                        <p>This is my message.</p>
+                        <span>12:00</span>
+                    </div>
+                    <div class="chat-box-body-send">
+                        <p>This is my message.</p>
+                        <span>12:00</span>
+                    </div>
+        
+                    <div class="chat-box-body-receive">
+                        <p>This is my message.</p>
+                        <span>12:00</span>
+                    </div>
+                    <div class="chat-box-body-send">
+                        <p>This is my message.</p>
+                        <span>12:00</span>
+                    </div>
+        
+                    <div class="chat-box-body-receive">
+                        <p>This is my message. This is my another message and this is my third message.</p>
+                        <span>12:00</span>
+                    </div>
+                </div>
+                <div class="chat-box-footer">
+                    
+                    <input placeholder="Ask" type="text" />
+                    <i class="send far fa-paper-plane"></i>
+        
+                </div>
+            </div>
+            <div class="chat-button"><span></span></div>
+            <!-- End of Chatbot layout -->
+
+
+
+
+
+            <!-- Footer -->
+            <footer class="sticky-footer bg-white">
+                <div class="container my-auto">
+                    <div class="copyright text-center my-auto">
+                        <span>Copyright &copy; FitFuel 2024</span>
+                    </div>
+                </div>
+            </footer>
+            <!-- End of Footer -->
+
+        </div>
+        <!-- End of Content Wrapper -->
+
+    </div>
+    <!-- End of Page Wrapper -->
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <a class="btn btn-primary" href="{% url 'logout' %}">Logout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<!-- Bootstrap core JavaScript -->
+<script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+<script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+
+<!-- Core plugin JavaScript -->
+<script src="{% static 'vendor/jquery-easing/jquery.easing.min.js' %}"></script>
+
+<!-- Custom scripts for all pages -->
+<script src="{% static 'js/sb-admin-2.min.js' %}"></script>
+
+<!-- Page level plugins -->
+<script src="{% static 'vendor/chart.js/Chart.min.js' %}"></script>
+
+<!-- Page level custom scripts -->
+<script src="{% static 'js/demo/chart-area-demo.js' %}"></script>
+<script src="{% static 'js/demo/chart-pie-demo.js' %}"></script>
+<script src="{% static 'js/chatbot-script.js' %}"></script>
+
+
+</body>
+
+</html>

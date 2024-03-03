@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form id="intakeForm" method="POST" action="{% url 'save_to_intake' %}">
+        {% csrf_token %}
+        <!-- Include other form fields here -->
+        <!-- For example, if 'food_name' and 'calories' are displayed in the result -->
+        <input type="hidden" name="food_name" value="{{ predicted_food }}">
+        <input type="hidden" name="calories" value="{{ calories }}">
+        <!-- Add a quantity input field -->
+        <input type="number" name="quantity" id="quantity" value="1" min="1" max="100">
+        <!-- Add a submit button -->
+        <button id="saveBtn" type="submit">Save</button>
+      </form>
+      
+</body>
+</html>

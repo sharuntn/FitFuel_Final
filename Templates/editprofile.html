@@ -1,0 +1,307 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>FitFuel - Edit Profile</title>
+
+    <!-- Custom fonts for this template-->
+    <link
+      href="{% static 'vendor/fontawesome-free/css/all.min.css' %}"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+      rel="stylesheet"
+    />
+
+    <!-- Custom styles for this template-->
+    <link href="{% static 'css/sb-admin-2.min.css' %}" rel="stylesheet" />
+
+</head>
+
+<body id="page-top">
+
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+
+        <!-- Sidebar -->
+        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+            <!-- Sidebar - Brand -->
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/dashboard">
+                <div class="sidebar-brand-icon">
+                    <img class="" src="{% static 'FF Green Black.png' %}" alt="" style="width: 50%;">
+
+                </div>
+                <div class="sidebar-brand-text mx-3">FitFuel</div>
+            </a>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider my-0">
+
+            <!-- Nav Item - Dashboard -->
+            <li class="nav-item">
+                <a class="nav-link" href="/dashboard">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Dashboard</span></a>
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+
+            
+
+            <!-- Nav Item - Pages Collapse Menu -->
+            <li class="nav-item" style="cursor: pointer;">
+                <a class="nav-link collapsed" href="/scan">
+                    <i class="fas fa-fw fa-cog"></i>
+                    <span>FoodLens.Ai</span>
+                </a>
+                
+            </li>
+
+            <!-- Nav Item - Utilities Collapse Menu -->
+            <li class="nav-item" style="cursor: pointer;">
+                <a class="nav-link collapsed" href="/intellirec">
+                    <i class="fas fa-fw fa-wrench"></i>
+                    <span>IntelliRec</span>
+                </a>
+                
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+
+            
+
+            <!-- Nav Item - Pages Collapse Menu -->
+            <li class="nav-item" style="cursor: pointer;">
+                <a class="nav-link" href="/health">
+                    <i class="fas fa-fw fa-folder"></i>
+                    <span>Health Analysis</span>
+                </a>
+                
+            </li>
+
+            <!-- Nav Item - Charts -->
+            <li class="nav-item">
+                <a class="nav-link" href="/charts">
+                    <i class="fas fa-fw fa-chart-area"></i>
+                    <span>Charts</span></a>
+            </li>
+
+            <!-- Nav Item - Tables -->
+            <li class="nav-item">
+                <a class="nav-link" href="/intake">
+                    <i class="fas fa-fw fa-table"></i>
+                    <span>Intake</span></a>
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider d-none d-md-block">
+
+            <!-- Sidebar Toggler (Sidebar) -->
+            <div class="text-center d-none d-md-inline">
+                <button class="rounded-circle border-0" id="sidebarToggle"></button>
+            </div>
+
+        </ul>
+        <!-- End of Sidebar -->
+
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+
+            <!-- Main Content -->
+            <div id="content">
+
+                <!-- Topbar -->
+                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+
+                    <!-- Sidebar Toggle (Topbar) -->
+                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                        <i class="fa fa-bars"></i>
+                    </button>
+
+                    
+
+                    <!-- Topbar Navbar -->
+                    <ul class="navbar-nav ml-auto">                       
+
+                       
+
+                        <div class="topbar-divider d-none d-sm-block"></div>
+
+                        <!-- Nav Item - User Information -->
+                        <li class="nav-item dropdown no-arrow">
+                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Sharun T N</span>
+                                <img class="img-profile rounded-circle"
+                                    src="img/undraw_profile.svg">
+                            </a>
+                            <!-- Dropdown - User Information -->
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                aria-labelledby="userDropdown">
+                                <a class="dropdown-item" href="/profile">
+                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Profile
+                                </a>
+                                
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="login/" data-toggle="modal" data-target="#logoutModal">
+                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Logout
+                                </a>
+                            </div>
+                        </li>
+
+                    </ul>
+
+                </nav>
+                <!-- End of Topbar -->
+
+                
+
+
+
+
+                <div class="container rounded bg-white mt-5 mb-5">
+                    <div class="row">
+                        <div class="col-md-3 border-right">
+                            <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5" width="150px" src=""><span class="font-weight-bold">{{user_profile.user.first_name}}</span><span class="text-black-50">{{user_profile.user.username}}</span><span> </span></div>
+                        </div>
+                        <div class="col-md-5 border-right">
+                            <div class="p-3 py-5">
+                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                    <h4 class="text-right">Profile Settings</h4>
+                                </div>
+                
+                <!-- update_profile.html -->
+                <form method="post" action="{% url 'editprofile' %}" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="row mt-2">
+                        <div class="col-md-6"><label class="labels">First Name</label><input type="text" class="form-control" placeholder="Sharun" name="first_name" id="first_name" value="{{ user_profile.user.first_name }}">
+                        </div>
+                        <div class="col-md-6"><label class="labels">Last Name</label><input type="text" class="form-control"  name="last_name" id="last_name" value="{{ user_profile.user.last_name }}" placeholder="T N"></div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-md-12 mb-3"><label class="labels">Username</label><input type="text" class="form-control" placeholder="sharuntn" name="username" id="username" value="{{ user_profile.user.username }}" required></div>
+                        <div class="col-md-12 mb-3"><label class="labels">Age</label><input type="number" id="age" name="age" class="form-control" placeholder="29" value="{{ user_profile.age }}" required></div>
+                        <div>
+                            <label for="gender">Gender:</label>
+                    <select name="gender" required name="gender">
+                        <option value="Male" {% if request.user.userprofile.gender == 'Male' %}selected{% endif %}>Male</option>
+                        <option value="Female" {% if request.user.userprofile.gender == 'Female' %}selected{% endif %}>Female</option>
+                        
+                    </select>
+                        </div>
+                        <div class="col-md-12 mb-3"><label class="labels">Mobile</label><input type="tel" class="form-control" placeholder="9072553014" name="mobile" id="mobile" value="{{ user_profile.mobile }}" required></div>
+                        <div class="col-md-12 mb-3"><label class="labels">Email</label><input type="email" class="form-control" placeholder="sharuntn5@gmail.com" name="email" id="email" value="{{ user_profile.user.email }}" required></div>
+                        
+                        <div class="col-md-12 mb-3"><label class="labels">Weight (KG)</label><input type="number" class="form-control" placeholder="82" name="weight" id="weight" value="{{ user_profile.weight }}" required></div>
+                        <div class="col-md-12 mb-3"><label class="labels">Height (CM)</label><input type="number" class="form-control" placeholder="172"name="height" id="height" value="{{ user_profile.height }}" required></div>
+                        <div class="col-md-12 mb-3"><label class="labels">Abdomen (CM)</label><input type="number" class="form-control" placeholder="172"name="abdomen" id="abdomen" value="{{ user_profile.abdomen }}" required>
+                        
+                        </div>
+                        <div>
+                            <label for="activity_level">Activity_level:</label>
+                            <select name="activity_level" required name="activity">
+                                <option value=1.55 {% if request.user.userprofile.activity_level == 1.55 %}selected{% endif %}>Sedentary</option>
+                                <option value=1.85 {% if request.user.userprofile.activity_level == 1.85 %}selected{% endif %}>Moderately active</option>   
+                                 <option value=2.2 {% if request.user.userprofile.activity_level == 2.2 %}selected{% endif %}>Vigorously active </option>  <option value=2.4 {% if request.user.userprofile.activity_level == 2.4 %}selected{% endif %}>Extremely active</option> 
+                            </select>
+                        </div>
+                    <div>
+                        <label for="diabetic">Diabetic Status:</label>
+                <select name="diabetic" required>
+                    <option value="diabetic" {% if request.user.userprofile.diabetic == 'diabetic' %}selected{% endif %}>Diabetic</option>
+                    <option value="not_diabetic" {% if request.user.userprofile.diabetic == 'not_diabetic' %}selected{% endif %}>Not Diabetic</option>
+                    <option value="not_sure" {% if request.user.userprofile.diabetic == 'not_sure' %}selected{% endif %}>Not Sure</option>
+                </select>
+                    </div>
+                    {% comment %} <div class="col-md-12 mt-4 text-center"><button class="btn btn-primary profile-button" type="submit">Save Profile</button></div> {% endcomment %}
+                        <div>
+                    <label for="profile_picture">Profile Picture:</label>
+                    <input type="file" name="profile_picture" id="profile_picture" value={{user_profile.profile_picture}}>
+                        </div>
+                    <div class="col-md-12 mt-4 text-center"><button class="btn btn-primary profile-button" type="submit">Save Profile</button></div>
+            </form>
+            </div>
+            </div>
+        </div>
+       
+    </div>
+</div>
+ 
+
+<!-- Logout Modal-->
+<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+aria-hidden="true">
+<div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">×</span>
+            </button>
+        </div>
+        <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+        <div class="modal-footer">
+            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+            <a class="btn btn-primary" href="/login/">Logout</a>
+        </div>
+    </div>
+</div>
+</div>
+
+
+</div>
+
+ <!-- Footer -->
+ <footer class="sticky-footer bg-white">
+    <div class="container my-auto">
+        <div class="copyright text-center my-auto">
+            <span>Copyright &copy; FitFuel 2024</span>
+        </div>
+    </div>
+</footer>
+<!-- End of Footer -->
+
+</div>
+<!-- End of Content Wrapper -->
+
+</div>
+<!-- End of Page Wrapper -->
+
+<!-- Scroll to Top Button-->
+<a class="scroll-to-top rounded" href="#page-top">
+<i class="fas fa-angle-up"></i>
+</a>
+
+</div>
+
+
+
+    <!-- Bootstrap core JavaScript-->
+    <script src='{% static "vendor/jquery/jquery.min.js" %}'></script>
+    <script src='{% static "vendor/bootstrap/js/bootstrap.bundle.min.js" %}'></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src='{% static "vendor/jquery-easing/jquery.easing.min.js" %}'></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src='{% static "js/sb-admin-2.min.js" %}'></script>
+
+</body>
+
+</html>

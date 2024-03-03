@@ -1,0 +1,388 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>FitFuel</title>
+
+    <!-- Custom fonts for this template-->
+    <link
+      href="{% static 'vendor/fontawesome-free/css/all.min.css' %}"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+      rel="stylesheet"
+    />
+
+    <!-- Custom styles for this template-->
+    <link href="{% static 'css/sb-admin-2.min.css' %}" rel="stylesheet" />
+    <link href="{% static 'css/chatbot-style.css' %}" rel="stylesheet" />
+
+</head>
+
+<body id="page-top">
+
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+
+
+
+
+        <!-- Sidebar -->
+        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+            <!-- Sidebar - Brand -->
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/dashboard">
+                <div class="sidebar-brand-icon">
+                    <img class="" src="{% static 'FF Green Black.png' %}" alt="" style="width: 50%;">
+
+                </div>
+                <div class="sidebar-brand-text mx-3">FitFuel</div>
+            </a>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider my-0">
+
+            <!-- Nav Item - Dashboard -->
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'dashboard' %}">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Dashboard</span></a>
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+
+            
+
+            <!-- Nav Item - Pages Collapse Menu -->
+            <li class="nav-item" style="cursor: pointer;">
+                <a class="nav-link collapsed" href="{% url 'FoodLens'%}">
+                    <i class="fas fa-fw fa-cog"></i>
+                    <span>FoodLens.Ai</span>
+                </a>
+                
+            </li>
+
+            <!-- Nav Item - Utilities Collapse Menu -->
+            <li class="nav-item active" style="cursor: pointer;">
+                <a class="nav-link collapsed" href="/dietdetails">
+                    <i class="fas fa-fw fa-wrench"></i>
+                    <span>IntelliRec</span>
+                </a>
+                
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+
+            
+
+            <!-- Nav Item - Pages Collapse Menu -->
+            <li class="nav-item" style="cursor: pointer;">
+                <a class="nav-link" href="/health">
+                    <i class="fas fa-fw fa-folder"></i>
+                    <span>Health Analysis</span>
+                </a>
+                
+            </li>
+
+            <!-- Nav Item - Charts -->
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'chart_home' %}">
+                    <i class="fas fa-fw fa-chart-area"></i>
+                    <span>Charts</span></a>
+            </li>
+
+            <!-- Nav Item - Tables -->
+            <li class="nav-item">
+                <a class="nav-link" href="/intake">
+                    <i class="fas fa-fw fa-table"></i>
+                    <span>Intake</span></a>
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider d-none d-md-block">
+
+            <!-- Sidebar Toggler (Sidebar) -->
+            <div class="text-center d-none d-md-inline">
+                <button class="rounded-circle border-0" id="sidebarToggle"></button>
+            </div>
+
+        </ul>
+        <!-- End of Sidebar -->
+
+
+
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+
+            <!-- Main Content -->
+            <div id="content">
+
+                <!-- Topbar -->
+                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+
+                    <!-- Sidebar Toggle (Topbar) -->
+                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                        <i class="fa fa-bars"></i>
+                    </button>
+
+                    
+
+                    <!-- Topbar Navbar -->
+                    <ul class="navbar-nav ml-auto">                       
+
+                       
+
+                        <div class="topbar-divider d-none d-sm-block"></div>
+
+                        <!-- Nav Item - User Information -->
+                        <li class="nav-item dropdown no-arrow">
+                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{user.username}}</span>
+                                <img class="img-profile rounded-circle"
+                                    src="img/undraw_profile.svg">
+                            </a>
+                            <!-- Dropdown - User Information -->
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                aria-labelledby="userDropdown">
+                                <a class="dropdown-item" href="{{user.userprofile.profile_picture.url}}">
+                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Profile
+                                </a>
+                                
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="login/" data-toggle="modal" data-target="#logoutModal">
+                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Logout
+                                </a>
+                            </div>
+                        </li>
+
+                    </ul>
+
+                </nav>
+                <!-- End of Topbar -->
+
+                <!-- Begin Page Content -->
+                <div class="container mt-5">
+
+                    <h1 class="text-center">Zone Diet</h1>
+                  
+                    <p>The Zone Diet, conceived by biochemist Dr. Barry Sears, is a nutrition strategy designed to optimize hormonal balance in the body by regulating the proportion of macronutrients in each meal. It centers on achieving a specific balance of 40% carbohydrates, 30% protein, and 30% fat, aiming to control inflammation and promote overall well-being. Let's delve into the key principles, meal planning methods, potential benefits, and considerations associated with the Zone Diet.</p>
+                  
+                    <h2>Key Principles of the Zone Diet:</h2>
+                    <ol>
+                      <li><strong>Balanced Macronutrient Ratios:</strong>
+                        <p>The core tenet of the Zone Diet is the meticulous balance of macronutrients in each meal. This 40-30-30 ratio is believed to modulate the hormones insulin and glucagon, influencing blood sugar levels and metabolism.</p>
+                      </li>
+                      <li><strong>Inflammation Control:</strong>
+                        <p>Dr. Sears posits that by maintaining a specific macronutrient balance, the Zone Diet helps control inflammation, a factor associated with various chronic diseases.</p>
+                      </li>
+                      <li><strong>Low-Glycemic Carbohydrates:</strong>
+                        <p>The diet promotes the consumption of low-glycemic carbohydrates, such as whole grains, fruits, and vegetables, to stabilize blood sugar levels and reduce the risk of insulin spikes.</p>
+                      </li>
+                      <li><strong>Lean Proteins:</strong>
+                        <p>Emphasis is placed on lean protein sources, like poultry and fish, to provide essential amino acids without excess saturated fats. This supports muscle maintenance and overall satiety.</p>
+                      </li>
+                      <li><strong>Healthy Fats:</strong>
+                        <p>Including sources of healthy fats, such as olive oil and nuts, is encouraged to contribute to overall well-being and hormone regulation.</p>
+                    </ol>
+                  
+                    <h2>Meal Planning in the Zone Diet:</h2>
+                    <ol>
+                      <li><strong>Blocks System:</strong>
+                        <p>The Zone Diet utilizes a "blocks" system, where each meal is composed of a specific number of blocks, with each block representing a set amount of carbohydrates, proteins, and fats.</p>
+                      </li>
+                      <li><strong>Personalized Block Calculation:</strong>
+                        <p>Individual needs are determined based on factors like body weight, activity level, and health goals. This personalized approach allows for tailored meal planning within the Zone Diet framework.</p>
+                    </ol>
+                  
+                    <h2>Benefits of the Zone Diet:</h2>
+                    <ol>
+                      <li><strong>Weight Management:</strong>
+                        <p>The Zone Diet aims to regulate appetite and reduce overall caloric intake, contributing to weight loss and weight management.</p>
+                      </li>
+                      <li><strong>Blood Sugar Regulation:</strong>
+                        <p>By focusing on low-glycemic carbohydrates, the Zone Diet seeks to stabilize blood sugar levels, potentially benefiting individuals with insulin resistance or diabetes.</p>
+                      </li>
+                      <li><strong>Enhanced Physical Performance:</strong>
+                        <p>Advocates suggest that maintaining a balanced macronutrient ratio can improve physical performance, energy levels, and recovery.</p>
+                      </li>
+                      <li><strong>Inflammation Control:</strong>
+                        <p>The Zone Diet's emphasis on specific macronutrient ratios aims to control inflammation, potentially reducing the risk of chronic diseases associated with inflammation.</p>
+                    </ol>
+                  
+                    <h2>Considerations and Criticisms:</h2>
+                    <ol>
+                      <li><strong>Complexity and Calculation:</strong>
+                        <p>Some individuals may find the need for calculating blocks and planning meals with precise macronutrient ratios to be intricate and time-consuming.</p>
+                      </li>
+                      <li><strong>Individual Response:</strong>
+                        <p>The success of the Zone Diet is contingent on individual adherence and response. While some may thrive on this approach, others may find it challenging to incorporate into their lifestyle.</p>
+                      </li>
+                      <li><strong>Practicality:</strong>
+                        <p>Critics argue that adhering strictly to specific macronutrient ratios in every meal may be challenging in real-life scenarios, potentially making the diet less practical for some individuals.</p>
+                    </ol>
+                  
+                    <h2>Conclusion:</h2>
+                    <p>The Zone Diet represents a distinctive approach to nutrition by prioritizing the hormonal responses to macronutrients for health optimization. While its principles may appeal to those seeking a structured dietary approach, the intricacy of meal planning and macronutrient calculations may pose challenges for broader adoption. As with any dietary strategy, individual preferences, lifestyle considerations, and professional guidance are crucial factors in determining the suitability and sustainability of the Zone Diet for individual health goals.</p>
+                  
+                  </div>
+            
+
+            </div>
+            <!-- End of Main Content -->
+
+            <!-- Chatbot layout -->
+            <div class="chat-box">
+                <div class="chat-box-header">
+                    <span class="retep">Retep</span>
+                    <p><i class="fa fa-times"></i></p>
+                </div>
+                <div class="chat-box-body">
+                    <div class="chat-box-body-send">
+                        <p>This is my message.</p>
+                        <span>12:00</span>
+                    </div>
+                    <div class="chat-box-body-receive">
+                        <p>This is my message.</p>
+                        <span>12:00</span>
+                    </div>
+                    
+                    <div class="chat-box-body-send">
+                        <p>This is my message.</p>
+                        <span>12:00</span>
+                    </div>
+                    
+                    <div class="chat-box-body-receive">
+                        <p>This is my message.</p>
+                        <span>12:00</span>
+                    </div>
+                    
+                    <div class="chat-box-body-send">
+                        <p>This is my message.</p>
+                        <span>12:00</span>
+                    </div>
+        
+                    <div class="chat-box-body-receive">
+                        <p>This is my message.</p>
+                        <span>12:00</span>
+                    </div>
+                    <div class="chat-box-body-send">
+                        <p>This is my message.</p>
+                        <span>12:00</span>
+                    </div>
+        
+                    <div class="chat-box-body-receive">
+                        <p>This is my message.</p>
+                        <span>12:00</span>
+                    </div>
+                    <div class="chat-box-body-send">
+                        <p>This is my message.</p>
+                        <span>12:00</span>
+                    </div>
+        
+                    <div class="chat-box-body-receive">
+                        <p>This is my message.</p>
+                        <span>12:00</span>
+                    </div>
+                    <div class="chat-box-body-send">
+                        <p>This is my message.</p>
+                        <span>12:00</span>
+                    </div>
+        
+                    <div class="chat-box-body-receive">
+                        <p>This is my message. This is my another message and this is my third message.</p>
+                        <span>12:00</span>
+                    </div>
+                </div>
+                <div class="chat-box-footer">
+                    
+                    <input placeholder="Ask" type="text" />
+                    <i class="send far fa-paper-plane"></i>
+        
+                </div>
+            </div>
+            <div class="chat-button"><span></span></div>
+            <!-- End of Chatbot layout -->
+
+
+
+
+
+            <!-- Footer -->
+            <footer class="sticky-footer bg-white">
+                <div class="container my-auto">
+                    <div class="copyright text-center my-auto">
+                        <span>Copyright &copy; FitFuel 2024</span>
+                    </div>
+                </div>
+            </footer>
+            <!-- End of Footer -->
+
+        </div>
+        <!-- End of Content Wrapper -->
+
+    </div>
+    <!-- End of Page Wrapper -->
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <a class="btn btn-primary" href="{% url 'logout' %}">Logout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<!-- Bootstrap core JavaScript -->
+<script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+<script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+
+<!-- Core plugin JavaScript -->
+<script src="{% static 'vendor/jquery-easing/jquery.easing.min.js' %}"></script>
+
+<!-- Custom scripts for all pages -->
+<script src="{% static 'js/sb-admin-2.min.js' %}"></script>
+
+<!-- Page level plugins -->
+<script src="{% static 'vendor/chart.js/Chart.min.js' %}"></script>
+
+<!-- Page level custom scripts -->
+<script src="{% static 'js/demo/chart-area-demo.js' %}"></script>
+<script src="{% static 'js/demo/chart-pie-demo.js' %}"></script>
+<script src="{% static 'js/chatbot-script.js' %}"></script>
+
+
+</body>
+
+</html>

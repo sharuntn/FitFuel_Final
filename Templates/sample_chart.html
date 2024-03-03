@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bar Graph Example</title>
+  <!-- Import Chart.js library -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <canvas id="myChart" width="200" height="200"></canvas>
+
+  <script>
+    // Data for the chart
+    const data = {
+      labels: {{timestamps_list|safe}},
+      datasets: [{
+        label: 'calories',
+        backgroundColor: 'blue',
+        borderColor: 'black',
+        borderWidth: 1,
+        data: {{calories_list|safe}}
+      }]
+    };
+
+    // Configuration options
+    const options = {
+      scales: {
+        yAxes: [{
+          ticks: {
+            beginAtZero: true
+          }
+        }]
+      }
+    };
+
+    // Get the context of the canvas element we want to select
+    const ctx = document.getElementById('myChart').getContext('2d');
+
+    // Create the chart
+    const myChart = new Chart(ctx, {
+      type: 'bar',
+      data: data,
+      options: options
+    });
+  </script>
+</body>
+</html>
