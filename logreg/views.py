@@ -53,7 +53,7 @@ def registerFunction(request):
                 return redirect('dashboard')
         else:
             messages.info(request,"Password not matching")
-            return redirect('Register')
+            return redirect('register')
         return redirect('dashboard')  # Redirect to the home page after registration
 
     else:

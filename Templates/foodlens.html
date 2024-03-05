@@ -92,13 +92,13 @@
                     
         
                     <!-- Nav Item - Pages Collapse Menu -->
-                    <li class="nav-item" style="cursor: pointer;">
+                    {% comment %} <li class="nav-item" style="cursor: pointer;">
                         <a class="nav-link" href="/health">
                             <i class="fas fa-fw fa-folder"></i>
                             <span>Health Analysis</span>
                         </a>
                         
-                    </li>
+                    </li> {% endcomment %}
         
                     <!-- Nav Item - Charts -->
                     <li class="nav-item">
@@ -106,13 +106,20 @@
                             <i class="fas fa-fw fa-chart-area"></i>
                             <span>Charts</span></a>
                     </li>
+                    <li class="nav-item" style="cursor: pointer;">
+                        <a class="nav-link" href="{% url 'chatbot' %}">
+                            <i class="fas fa-fw fa-folder"></i>
+                            <span>Chat with Retep</span>
+                        </a>
+                        
+                    </li>
         
                     <!-- Nav Item - Tables -->
-                    <li class="nav-item">
+                    {% comment %} <li class="nav-item">
                         <a class="nav-link" href="/intake">
                             <i class="fas fa-fw fa-table"></i>
                             <span>Intake</span></a>
-                    </li>
+                    </li> {% endcomment %}
         
                     <!-- Divider -->
                     <hr class="sidebar-divider d-none d-md-block">

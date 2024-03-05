@@ -103,10 +103,11 @@ def dashboardFunction(request):
             user_id = request.user.id
             bmr = calculate_bmr(user_profile.gender,user_profile.weight,user_profile.height,user_profile.age)
             total_calories = calculate_maintenance_calories(bmr,user_profile.activity_level)
-            results = Intake.objects.filter(user=user_id,timestamp__date=current_date).values('calories')
+            results = Intake.objects.filter(user=user_id,timestamp__date=current_date).values('calories','quantity')
             calorielist = []
-            for i in results:
-                calorielist.append(i['calories'])
+            for entry in results:
+                total_calories_item = entry['calories'] * entry['quantity']
+                calorielist.append(total_calories_item)
             # print(sum(calorielist))
             calorie_left = total_calories - sum(calorielist)
 
